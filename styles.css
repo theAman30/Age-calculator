@@ -11,7 +11,6 @@ body {
     line-height: 1.5;
     padding: 0;
     margin: 0;
-    /* overflow: hidden;    */
 }
 
 .container {
@@ -35,7 +34,6 @@ body {
     padding: 0.3rem 1.25rem;
     margin-left: 1.25rem;
     display: inline-block;
-    /* float: left; */
 }
 
 .base h4 {
