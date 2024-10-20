@@ -9,7 +9,7 @@ function age() {
   }
 
   var date = new Date();
-  var d2 = date.getDate();
+  var d2 = date.getDate();  //to get date 
   var m2 = 1 + date.getMonth();
   var y2 = date.getFullYear();
   var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
