@@ -11,7 +11,7 @@ function age() {
   var date = new Date();
   var d2 = date.getDate();  //to get date 
   var m2 = 1 + date.getMonth(); // to get month
-  var y2 = date.getFullYear(); // to get year
+  var y2 = date.getFullYear(); // to get year 
   var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   if (d1 > d2) {
