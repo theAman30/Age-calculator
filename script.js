@@ -4,14 +4,15 @@ function age() {
   var y1 = document.getElementById("year").value.trim();
 
   if (d1 === "" || m1 === "" || y1 === "") {
-    document.getElementById("age").innerHTML = "Please enter your complete date of birth.";
+    document.getElementById("age").innerHTML =
+      "Please enter your complete date of birth.";
     return;
   }
 
   var date = new Date();
-  var d2 = date.getDate();  //to get date  
-  var m2 = 1 + date.getMonth(); // to get month 
-  var y2 = date.getFullYear(); // to get year 
+  var d2 = date.getDate(); //to get date
+  var m2 = 1 + date.getMonth(); // to get month
+  var y2 = date.getFullYear(); // to get year
   var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
   if (d1 > d2) {
@@ -28,5 +29,6 @@ function age() {
   var m = m2 - m1;
   var y = y2 - y1;
 
-  document.getElementById("age").innerHTML = "You are " + y + "years " + m + "months and " + d + "days old.";
+  document.getElementById("age").innerHTML =
+    "You are " + y + "years " + m + "months and " + d + "days old.";
 }
