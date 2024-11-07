@@ -109,8 +109,10 @@ input[type="button"]:hover {
   margin-left: 25.5rem;
 }
 
-/* media queries for responsiveness */
 
+
+
+/* media queries for responsiveness */
 @media (max-width: 875px) {
   #age {
     margin-left: 0.5rem;
