@@ -1,3 +1,4 @@
+// JavaScript function to calculate the age according to user input 
 function age() {
   var d1 = document.getElementById("date").value.trim();
   var m1 = document.getElementById("month").value.trim();
