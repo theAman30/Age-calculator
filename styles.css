@@ -76,7 +76,7 @@ input[type="text"] {
 
 input[type="text"]:focus {
   background-color: #ffffff;
-  border: 2.5px solid #566246;
+  border: 2.5px solid #b004f4;
   outline: none;
 }
 
