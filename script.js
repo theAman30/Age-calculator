@@ -1,35 +1,64 @@
-// JavaScript function to calculate the age according to user input 
 function age() {
-  var d1 = document.getElementById("date").value.trim();
-  var m1 = document.getElementById("month").value.trim();
-  var y1 = document.getElementById("year").value.trim();
+        const d1 = parseInt(document.getElementById("date").value.trim());
+        const m1 = parseInt(document.getElementById("month").value.trim());
+        const y1 = parseInt(document.getElementById("year").value.trim());
 
-  if (d1 === "" || m1 === "" || y1 === "") {
-    document.getElementById("age").innerHTML =
-      "Please enter your complete date of birth.";
-    return;
-  }
+        if (!d1 || !m1 || !y1) {
+          document.getElementById("age").innerHTML = "Please enter your full date of birth.";
+          return;
+        }
 
-  var date = new Date(); 
-  var d2 = date.getDate(); //to get date
-  var m2 = 1 + date.getMonth(); // to get month
-  var y2 = date.getFullYear(); // to get year
-  var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // months
+        const birthDate = new Date(`${y1}-${String(m1).padStart(2, '0')}-${String(d1).padStart(2, '0')}T00:00:00`);
+        const today = new Date();
 
-  if (d1 > d2) {
-    d2 = d2 + month[m2 - 1];
-    m2 = m2 - 1;
-  }
+        if (birthDate > today) {
+          document.getElementById("age").innerHTML = "Date of birth cannot be in the future.";
+          return;
+        }
 
-  if (m1 > m2) {
-    m2 = m2 + 12;
-    y2 = y2 - 1;
-  }
+        // Calculate Years, Months, Days
+        let d2 = today.getDate(), m2 = today.getMonth() + 1, y2 = today.getFullYear();
+        let monthDays = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-  var d = d2 - d1;
-  var m = m2 - m1;
-  var y = y2 - y1;
+        if ((y1 % 4 === 0 && y1 % 100 !== 0) || y1 % 400 === 0) monthDays[1] = 29;
 
-  document.getElementById("age").innerHTML =
-    "You are " + y + " years " + m + " months and " + d + " days old";
-}
+        if (d1 > d2) {
+          d2 += monthDays[(m2 - 2 + 12) % 12];
+          m2--;
+        }
+
+        if (m1 > m2) {
+          m2 += 12;
+          y2--;
+        }
+
+        const years = y2 - y1;
+        const months = m2 - m1;
+        const days = d2 - d1;
+
+        const ageText = `You are <strong>${years} years, ${months} months, ${days} days</strong> old.`;
+
+        // Start live counter
+        interval = setInterval(() => {
+          const now = new Date();
+          const diffMs = now - birthDate;
+
+          const totalSeconds = Math.floor(diffMs / 1000);
+          const totalMinutes = Math.floor(totalSeconds / 60);
+          const totalHours = Math.floor(totalMinutes / 60);
+          const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+              const live = `
+                <br><br>
+                You've lived approximately:
+                <ul class="mt-2 space-y-1 text-left text-gray-700 text-sm">
+                  <li>📅 <strong>${totalDays}</strong> days</li>
+                  <li>⏱️ <strong>${totalHours}</strong> hours</li>
+                  <li>🕒 <strong>${totalMinutes}</strong> minutes</li>
+                  <li>⏳ <strong>${totalSeconds}</strong> seconds</li>
+                </ul>
+              `;
+
+          document.getElementById("age").innerHTML = ageText + live;
+        }, 1000);
+      }
